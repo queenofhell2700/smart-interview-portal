@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           };
           const { data } = await axios.get('http://localhost:5000/api/auth/profile', config);
-          setUser({ ...userInfo, ...data.user });
+          setUser({ ...userInfo, ...data });
         } catch (error) {
           console.error('Failed to fetch profile', error);
           setUser(userInfo);
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
       };
     }
   }; */
-  const login = async (email, password) => {
+  /*const login = async (email, password) => {
     try {
       const { data } = await axios.post(
         'http://localhost:5000/api/auth/login',
@@ -51,7 +51,16 @@ export const AuthProvider = ({ children }) => {
       const userData = {
         ...data.user,
         token: data.token
-      };
+      };*/
+
+      const login = async (email, password) => {
+  try {
+    const { data } = await axios.post(
+      'http://localhost:5000/api/auth/login',
+      { email, password }
+    );
+
+    const userData = data;   // ✅ FIX HERE
 
       setUser(userData);
       localStorage.setItem('userInfo', JSON.stringify(userData));

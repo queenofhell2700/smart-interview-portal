@@ -11,27 +11,28 @@ const Login = () => {
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    
-    const result = await login(formData.email, formData.password);
-    
-    if (result.success) {
-      if (isAdminView) {
-        if (result.user.role === 'admin') {
-          navigate('/admin');
-        } else {
-          setError('Access Denied: You do not have administrator privileges.');
-        }
+  e.preventDefault();
+  setIsLoading(true);
+  setError('');
+
+  const result = await login(formData.email, formData.password);
+
+  if (result.success) {
+    if (isAdminView) {
+      if (result.user && result.user.role === 'admin') {
+        navigate('/admin');
       } else {
-        navigate('/dashboard');
+        setError('Access Denied: You do not have administrator privileges.');
       }
     } else {
-      setError(result.message);
+      navigate('/dashboard');
     }
-    setIsLoading(false);
-  };
+  } else {
+    setError(result.message);
+  }
+
+  setIsLoading(false);
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 font-sans p-6 text-gray-900">

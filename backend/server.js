@@ -5,12 +5,33 @@ const connectDB = require('./config/db');
 const questionRoutes = require('./routes/questionRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const User = require('./models/User');
 
 // Load env vars
 dotenv.config();
+const createDefaultAdmin = async () => {
+  try {
+    const adminExists = await User.findOne({ email: 'admin@nexus.com' });
 
+    if (!adminExists) {
+      await User.create({
+        name: 'System Administrator',
+        email: 'admin@nexus.com',
+        password: 'adminpassword123',
+        role: 'admin'
+      });
+
+      console.log('Default admin created: admin@nexus.com');
+    }
+    console.log(await User.find());
+  } catch (error) {
+    console.log('Admin creation error:', error.message);
+  }
+};
 // Connect to database
 connectDB();
+
+createDefaultAdmin();
 
 const app = express();
 
