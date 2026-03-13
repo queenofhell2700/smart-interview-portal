@@ -21,7 +21,7 @@ const Practice = () => {
     const fetchQuestions = async () => {
       try {
         setLoading(true);
-        const { data } = await axios.get(`http://localhost:5000/api/questions?category=${categoryParam}&difficulty=${difficultyParam}`);
+        const { data } = await axios.get(`https://smart-interview-portal.onrender.com/api/questions?category=${categoryParam}&difficulty=${difficultyParam}`);
         
         // Randomly slice 10 questions to ensure variety (as per requirement: "questions must be randomized")
         const shuffled = data.sort(() => 0.5 - Math.random());

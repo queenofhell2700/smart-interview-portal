@@ -26,7 +26,7 @@ const Result = () => {
               Authorization: `Bearer ${user.token}`,
             },
           };
-          await axios.put('http://localhost:5000/api/auth/stats', { 
+          await axios.put('https://smart-interview-portal.onrender.com/api/auth/stats', { 
             solvedCount: total, 
             accuracy: percentage 
           }, config);

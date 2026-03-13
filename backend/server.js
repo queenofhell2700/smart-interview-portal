@@ -7,6 +7,8 @@ const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const User = require('./models/User');
 
+require("dotenv").config();
+
 // Load env vars
 dotenv.config();
 const createDefaultAdmin = async () => {

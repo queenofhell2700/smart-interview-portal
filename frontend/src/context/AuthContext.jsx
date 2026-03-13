@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
           const config = {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           };
-          const { data } = await axios.get('http://localhost:5000/api/auth/profile', config);
+          const { data } = await axios.get('https://smart-interview-portal.onrender.com', config);
           setUser({ ...userInfo, ...data });
         } catch (error) {
           console.error('Failed to fetch profile', error);
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
       const login = async (email, password) => {
   try {
     const { data } = await axios.post(
-      'http://localhost:5000/api/auth/login',
+      'https://smart-interview-portal.onrender.com',
       { email, password }
     );
 
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      const { data } = await axios.post('https://smart-interview-portal.onrender.com', { name, email, password });
       setUser(data);
       localStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };

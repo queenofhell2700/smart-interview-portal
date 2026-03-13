@@ -8,7 +8,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/auth/leaderboard');
+        const { data } = await axios.get('https://smart-interview-portal.onrender.com/api/auth/leaderboard');
         setUsers(data);
         setLoading(false);
       } catch (error) {

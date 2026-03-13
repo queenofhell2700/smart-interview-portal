@@ -40,7 +40,7 @@ const Admin = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        'http://localhost:5000/api/questions?limit=100'
+        'https://smart-interview-portal.onrender.com'
       );
       setQuestions(data);
       setLoading(false);
@@ -60,13 +60,13 @@ const Admin = () => {
     try {
       if (editingQuestion) {
         await axios.put(
-          `http://localhost:5000/api/admin/questions/${editingQuestion._id}`,
+          `https://smart-interview-portal.onrender.com/api/admin/questions/${editingQuestion._id}`,
           formData,
           config
         );
       } else {
         await axios.post(
-          'http://localhost:5000/api/admin/questions',
+          'https://smart-interview-portal.onrender.com',
           formData,
           config
         );
@@ -88,7 +88,8 @@ const Admin = () => {
         };
 
         await axios.delete(
-          `http://localhost:5000/api/admin/questions/${id}`,
+          //`http://localhost:5000/api/admin/questions/${id}`,
+          'https://smart-interview-portal.onrender.com/api/admin/questions/${id}',
           config
         );
 
